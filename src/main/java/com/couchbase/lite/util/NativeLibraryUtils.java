@@ -70,8 +70,10 @@ public class NativeLibraryUtils {
 
     private static File extractLibrary(String libraryName) throws IOException {
         String libraryResourcePath = getLibraryResourcePath(libraryName);
+        System.out.println("libraryResourcePath : "+libraryResourcePath);
         String targetFolder = new File(System.getProperty("java.io.tmpdir")).getAbsolutePath();
-        File targetFile = new File(targetFolder, getLibraryFullName(libraryName));
+        System.out.println("targetFolder : "+targetFolder);
+        File targetFile = new File(targetFolder, getLibraryFullName(libraryName)).getCanonicalFile();
 
         // If the target already exists, and it's unchanged, then use it, otherwise delete it and
         // it will be replaced.
