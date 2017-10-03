@@ -33,10 +33,14 @@ public class NativeLibraryUtils {
         try {
             File libraryFile;
             String libraryPath = getConfiguredLibraryPath(libraryName);
+            System.out.println("libraryPath : "+libraryPath);
+
             if (libraryPath != null)
                 libraryFile = new File(libraryPath);
             else
                 libraryFile = extractLibrary(libraryName);
+
+            System.out.println("libraryFile : "+libraryFile);
 
             if (libraryFile != null) {
                 System.load(libraryFile.getAbsolutePath());
@@ -55,11 +59,17 @@ public class NativeLibraryUtils {
 
     private static String getConfiguredLibraryPath(String libraryName) {
         String key = String.format(Locale.ENGLISH, "com.couchbase.lite.lib.%s.path", libraryName);
+        System.out.println("key : "+key);
+
         return System.getProperty(key);
     }
 
     private static String getLibraryFullName(String libraryName) {
+        System.out.println("libraryName : "+libraryName);
+
         String name = System.mapLibraryName(libraryName);
+        System.out.println("name : "+name);
+
         // Workaround discrepancy issue between OSX Java6 (.jnilib)
         // and Java7 (.dylib) native library file extension.
         if (name.endsWith(".jnilib")) {
@@ -71,9 +81,12 @@ public class NativeLibraryUtils {
     private static File extractLibrary(String libraryName) throws IOException {
         String libraryResourcePath = getLibraryResourcePath(libraryName);
         System.out.println("libraryResourcePath : "+libraryResourcePath);
+
         String targetFolder = new File(System.getProperty("java.io.tmpdir")).getAbsolutePath();
         System.out.println("targetFolder : "+targetFolder);
+
         File targetFile = new File(targetFolder, getLibraryFullName(libraryName)).getCanonicalFile();
+        System.out.println("targetFile : "+targetFile.getCanonicalPath().toString());
 
         // If the target already exists, and it's unchanged, then use it, otherwise delete it and
         // it will be replaced.
@@ -140,7 +153,11 @@ public class NativeLibraryUtils {
         path += '/' + archName;
 
         // Platform specific name part of path.
+        if (osName.contains("Linux")) {
+            path = "/";
+        }
         path += '/' + getLibraryFullName(libraryName);
+
         return path;
     }
 }
