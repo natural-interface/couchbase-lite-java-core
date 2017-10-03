@@ -154,7 +154,7 @@ public class NativeLibraryUtils {
 
         // Platform specific name part of path.
         if (osName.contains("Linux")) {
-            path = "/";
+            path = "/usr/lib/arm-linux-gnueabihf";
         }
         path += '/' + getLibraryFullName(libraryName);
 
