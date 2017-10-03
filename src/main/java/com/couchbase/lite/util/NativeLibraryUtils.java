@@ -80,7 +80,7 @@ public class NativeLibraryUtils {
 
     private static File extractLibrary(String libraryName) throws IOException {
         String libraryResourcePath = getLibraryResourcePath(libraryName);
-        System.out.println("libraryResourcePath : "+libraryResourcePath);
+        System.out.println("libraryResourcePath xx: "+libraryResourcePath);
 
         String targetFolder = new File(System.getProperty("java.io.tmpdir")).getAbsolutePath();
         System.out.println("targetFolder : "+targetFolder);
@@ -157,6 +157,7 @@ public class NativeLibraryUtils {
             path = "/usr/lib/arm-linux-gnueabihf";
         }
         path += '/' + getLibraryFullName(libraryName);
+        System.out.println("path xx: "+path);
 
         return path;
     }
