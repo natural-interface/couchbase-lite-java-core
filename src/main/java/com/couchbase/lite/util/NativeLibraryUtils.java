@@ -20,6 +20,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -107,8 +110,8 @@ public class NativeLibraryUtils {
         }
 
         // Extract the library to the target directory:
-        File file = new File(libraryResourcePath);
-        InputStream libraryReader = new FileInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
+        Path file = Paths.get(libraryResourcePath);
+        InputStream libraryReader = Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
             return null;
