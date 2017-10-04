@@ -16,6 +16,7 @@
 package com.couchbase.lite.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -106,7 +107,8 @@ public class NativeLibraryUtils {
         }
 
         // Extract the library to the target directory:
-        InputStream libraryReader = NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
+        File file = new File(libraryResourcePath)
+        InputStream libraryReader = new FileInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
             return null;
