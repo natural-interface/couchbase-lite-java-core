@@ -79,6 +79,8 @@ public class NativeLibraryUtils {
         if (osName.contains("Linux")) {
             name = name.replace(".so", ".so.0");
         }
+        System.out.println("name after renaming : "+name);
+
         return name;
     }
 
