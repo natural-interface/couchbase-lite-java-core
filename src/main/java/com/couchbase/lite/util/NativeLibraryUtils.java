@@ -112,7 +112,7 @@ public class NativeLibraryUtils {
         // Extract the library to the target directory:
         Path file = Paths.get(libraryResourcePath);
         System.out.print("file : "+file.toString());
-        InputStream libraryReader = Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
+        InputStream libraryReader = new FileInputStream(file.toString()); //Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
             return null;
@@ -120,11 +120,14 @@ public class NativeLibraryUtils {
 
         FileOutputStream libraryWriter = new FileOutputStream(targetFile);
         try {
+            int i;
+
             byte[] buffer = new byte[1024];
             int bytesRead = 0;
             while ((bytesRead = libraryReader.read(buffer)) != -1) {
                 libraryWriter.write(buffer, 0, bytesRead);
             }
+
         } finally {
             libraryWriter.close();
             libraryReader.close();
