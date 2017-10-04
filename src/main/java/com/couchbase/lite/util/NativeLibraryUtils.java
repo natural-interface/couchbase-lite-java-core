@@ -75,6 +75,10 @@ public class NativeLibraryUtils {
         if (name.endsWith(".jnilib")) {
             name = name.replace(".jnilib", ".dylib");
         }
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Linux")) {
+            name = name.replace(".so", ".so.0");
+        }
         return name;
     }
 
@@ -153,7 +157,7 @@ public class NativeLibraryUtils {
         path += '/' + archName;
 
         // Platform specific name part of path.
-        if (osName.contains("Linux")) {
+        if ((osName.contains("Linux")) && (archName.contains("arm"))) {
             path = "/usr/lib/arm-linux-gnueabihf";
         }
         path += '/' + getLibraryFullName(libraryName);
