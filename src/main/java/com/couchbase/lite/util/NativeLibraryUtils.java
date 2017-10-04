@@ -111,6 +111,7 @@ public class NativeLibraryUtils {
 
         // Extract the library to the target directory:
         Path file = Paths.get(libraryResourcePath);
+        System.out.print("file : "+file.toString());
         InputStream libraryReader = Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
