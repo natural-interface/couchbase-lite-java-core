@@ -137,7 +137,7 @@ public class NativeLibraryUtils {
         if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
             try {
                 Runtime.getRuntime().exec(
-                        new String[]{"chmod", "755", targetFile.getAbsolutePath()}).waitFor();
+                        new String[]{"sudo chmod", "755", targetFile.getAbsolutePath()}).waitFor();
             } catch (Throwable e) {
                 Log.e(Log.TAG, "Error executing 'chmod 755' on extracted native library", e);
             }
