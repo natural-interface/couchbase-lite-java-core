@@ -110,9 +110,10 @@ public class NativeLibraryUtils {
         }
 
         // Extract the library to the target directory:
-        Path file = Paths.get(libraryResourcePath);
-        System.out.print("file : "+file.toString());
-        InputStream libraryReader = new FileInputStream(file.toString()); //Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
+        //Path file = Paths.get(libraryResourcePath);
+        //System.out.print("file : "+file.toString());
+        InputStream libraryReader = NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
+        //new FileInputStream(file.toString()); //Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
             return null;
@@ -137,7 +138,7 @@ public class NativeLibraryUtils {
         if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
             try {
                 Runtime.getRuntime().exec(
-                        new String[]{"sudo chmod", "755", targetFile.getAbsolutePath()}).waitFor();
+                        new String[]{"sudo", "chmod", "755", targetFile.getAbsolutePath()}).waitFor();
             } catch (Throwable e) {
                 Log.e(Log.TAG, "Error executing 'chmod 755' on extracted native library", e);
             }
@@ -168,9 +169,10 @@ public class NativeLibraryUtils {
         path += '/' + archName;
 
         // Platform specific name part of path.
+        /*
         if ((osName.contains("Linux")) && (archName.contains("arm"))) {
             path = "/usr/lib/arm-linux-gnueabihf";
-        }
+        }*/
         path += '/' + getLibraryFullName(libraryName);
         System.out.println("path xx: "+path);
 
