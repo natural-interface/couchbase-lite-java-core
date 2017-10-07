@@ -7,9 +7,10 @@ sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
-    local-maven-repo { file './local-maven-repo/'}
     mavenLocal()
-    maven { url 'http://files.couchbase.com/maven2/' }
+    maven {
+            url 'http://files.couchbase.com/maven2/'
+            }
     mavenCentral()
 }
 

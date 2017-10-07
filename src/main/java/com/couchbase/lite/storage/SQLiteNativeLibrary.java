@@ -54,15 +54,11 @@ public class SQLiteNativeLibrary {
         boolean success = false;
         for (String libName : libraryOption) {
             if (JNI_SQLCIPHER_LIBRARY.equals(libName)) {
-                //success = load(SHARED_SQLCIPHER_LIBRARY);
-
                 if (load(SHARED_SQLCIPHER_LIBRARY)) {
                     if (load(JNI_KEY_LIBRARY))
                         success = load(libName);
                 }
             } else if (JNI_SQLITE_CUSTOM_LIBRARY.equals(libName)) {
-                //success = load(SHARED_SQLITE_LIBRARY);
-
                 if (load(SHARED_SQLITE_LIBRARY))
                     success = load(libName);
             } else
@@ -96,7 +92,6 @@ public class SQLiteNativeLibrary {
     private static boolean loadSystemLibrary(String libName) {
         try {
             System.loadLibrary(libName);
-            //System.load("/usr/lib/arm-linux-gnueabihf/lib"+libName+".so.0");
         } catch (UnsatisfiedLinkError e) {
             return false;
         }

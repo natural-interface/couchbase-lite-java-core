@@ -79,11 +79,7 @@ public class NativeLibraryUtils {
         if (name.endsWith(".jnilib")) {
             name = name.replace(".jnilib", ".dylib");
         }
-        /*
-        String osName = System.getProperty("os.name");
-        if (osName.contains("Linux")) {
-            name = name.replace(".so", ".so.0");
-        }*/
+
         System.out.println("name after renaming : "+name);
 
         return name;
@@ -111,10 +107,8 @@ public class NativeLibraryUtils {
         }
 
         // Extract the library to the target directory:
-        //Path file = Paths.get(libraryResourcePath);
-        //System.out.print("file : "+file.toString());
+
         InputStream libraryReader = NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
-        //new FileInputStream(file.toString()); //Files.newInputStream(file);//NativeLibraryUtils.class.getResourceAsStream(libraryResourcePath);
         if (libraryReader == null) {
             System.err.println("Library not found: " + libraryResourcePath);
             return null;
@@ -170,10 +164,7 @@ public class NativeLibraryUtils {
         path += '/' + archName;
 
         // Platform specific name part of path.
-        /*
-        if ((osName.contains("Linux")) && (archName.contains("arm"))) {
-            path = "/usr/lib/arm-linux-gnueabihf";
-        }*/
+
         path += '/' + getLibraryFullName(libraryName);
         System.out.println("path xx: "+path);
 
