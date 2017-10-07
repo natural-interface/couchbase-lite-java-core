@@ -149,7 +149,7 @@ public class NativeLibraryUtils {
 
     private static String getLibraryResourcePath(String libraryName) {
         // Root native folder.
-        String path = "native";
+        String path = "/native";
 
         // OS part of path.
         String osName = System.getProperty("os.name");
