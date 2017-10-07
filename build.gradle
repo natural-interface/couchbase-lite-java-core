@@ -7,6 +7,7 @@ sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
+    local-maven-repo { file './local-maven-repo/'}
     mavenLocal()
     maven { url 'http://files.couchbase.com/maven2/' }
     mavenCentral()
@@ -25,7 +26,7 @@ sourceSets {
 }
 
 dependencies {
-    compile 'com.couchbase.lite:java-native:1.0'
+    compile 'com.couchbase.lite:couchbase-lite-java-sqlite-custom:1.0'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.0'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.0'
