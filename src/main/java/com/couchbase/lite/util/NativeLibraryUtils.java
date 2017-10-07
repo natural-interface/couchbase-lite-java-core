@@ -79,10 +79,11 @@ public class NativeLibraryUtils {
         if (name.endsWith(".jnilib")) {
             name = name.replace(".jnilib", ".dylib");
         }
+        /*
         String osName = System.getProperty("os.name");
         if (osName.contains("Linux")) {
             name = name.replace(".so", ".so.0");
-        }
+        }*/
         System.out.println("name after renaming : "+name);
 
         return name;
@@ -148,7 +149,7 @@ public class NativeLibraryUtils {
 
     private static String getLibraryResourcePath(String libraryName) {
         // Root native folder.
-        String path = "/native";
+        String path = "native";
 
         // OS part of path.
         String osName = System.getProperty("os.name");
